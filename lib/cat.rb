@@ -4,22 +4,30 @@ require 'pry'
 
 class Cat
  
+
+@@all = []
+
   attr_reader :name
-  attr_accessor :owner
+  attr_accessor :owner, :mood
 
   def initialize(name_arg, owner_arg)
     @name = name_arg
     @owner = owner_arg
+    @mood = "nervous"
+    @@all << self
+
   end
 
-
-
+  def self.all
+    @@all
+  end
 
 
 end
 
 
-Fluffy = Cat.new("Fluffy", "Lida")
+
+#Fluffy = Cat.new("Fluffy", "Lida")
 
 
 #binding.pry

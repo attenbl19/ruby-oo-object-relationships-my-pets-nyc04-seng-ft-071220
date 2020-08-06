@@ -30,12 +30,51 @@ class Owner
     
   end
 
+  def cats
+      Cat.all.select{|cat| cat.owner == self}
+ #returns a a collection of all the cats that belong to the owner
+  end
+
+  def dogs
+    Dog.all.select{|dog| dog.owner == self}
+#returns a a collection of all the cats that belong to the owner
+  end
+
+  def buy_cat(a_cat)
+    Cat.new(a_cat, self)
+  end
+
+  def buy_dog(a_dog)
+    Dog.new(a_dog, self)
+  end
+
+  def walk_dogs
+    Dog.all.each do |dog|
+      dog.mood ="happy"
+    end
+  end
+  
+  def feed_cats
+    Cat.all.each do |cat|
+      cat.mood ="happy"
+    end
+  end
+
+  def sell_pets
+    all_pets = Cat.all + Dog.all
+    all_pets.each do |pet_info|
+      pet_info.mood = "nervous"
+      pet_info.owner = nil
+    end
+
+  end
+
+    def list_pets
+      "I have #{self.dogs.count} dog(s), and #{self.cats.count} cat(s)."
+    end
+
+
+    
 end
 
 #lida = Owner.new("Lida")
-
-# Define a `Dog` and `Cat` class that have the attributes required by the
-#   test suite. Keep in mind, some of the attributes should be readable and writable
-#   (i.e. `attr_accessor`s), while others may need to be _just_ setters
-#   (`attr_writer`) or _just_ getters (`attr_reader`). The test suite will make this
-#   clear so pay attention to the test output.
